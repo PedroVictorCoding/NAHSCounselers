@@ -1,2 +1,2 @@
 # NAHSCounselers
-Code for the North Atlanta High School Counselers website
+Code for the North Atlanta High School Counselors website
