@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+    <title>Graduation Coach</title>
+{% endblock title %}
+
+
+{% block content %}
+    
+<div class="container">
+
+    <div class="jumbotron text-center">
+        <h2>Graduation Coach & Credit Recovery</h2>
+        <h3>Updates are ordered by most recent</h3>
+    </div>
+
+
+    {% for graduation_update in graduation_updates %}
+        <div class="card">
+            <div class="card-header">{{ graduation_update.data_published }}</div>
+            <div class="card-body">
+                <h5 class="card-title">{{ graduation_update.title }}</h5>
+                <p class="card-text">{{ graduation_update.content|linebreaks }}</p>
+                <img src="/media/{{ graduation_update.image }}" style="margin: auto; width: 50%;" alt="card image">
+            </div>
+            <div class="card-footer">By: {{ graduation_update.counselor_name}}</div>
+        </div>
+    {% endfor %}
+
+</div>
+
+
+        
+{% endblock content %}
+    

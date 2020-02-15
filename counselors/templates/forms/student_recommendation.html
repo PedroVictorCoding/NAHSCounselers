@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock title %}
+
+{% block content %}
+<div class="form-group jumbotron container mt-5">
+        <h2 class="mb-5">Letter of Recommendation Request</h2>
+        <form method="post">
+            <div class="form-group">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <button type="submit" class="btn btn-dark btn-lg btn-block">Submit</button>
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}

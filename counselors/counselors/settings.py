@@ -25,7 +25,7 @@ SECRET_KEY = 'nsj@q^t^t5uk^&8hek6=ye1#z$yatqw@i9w==3cc+51vbtm$y-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'home',
+    'forms',
 ]
 
 MIDDLEWARE = [
@@ -130,7 +131,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = BASE_DIR + '/static'
-
-STATICFILES_DIRS = []
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
