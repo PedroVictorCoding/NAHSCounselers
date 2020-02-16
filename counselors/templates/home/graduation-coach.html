@@ -23,10 +23,16 @@
             <div class="card-body">
                 <h5 class="card-title">{{ graduation_update.title }}</h5>
                 <p class="card-text">{{ graduation_update.content|linebreaks }}</p>
+                
+                {% if graduation_update.external_url %}
+                    <p>Link: <a href="{{ graduation_update.external_url }}">{{ graduation_update.external_url }}</a></p>
+                {% endif %}
+                
                 <img src="/media/{{ graduation_update.image }}" style="margin: auto; width: 50%;" alt="card image">
             </div>
             <div class="card-footer">By: {{ graduation_update.counselor_name}}</div>
         </div>
+        <br>
     {% endfor %}
 
 </div>
