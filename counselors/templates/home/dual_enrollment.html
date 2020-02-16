@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load tz %}
+
+{% block title %}
+    <title>Dual enrollment</title>
+{% endblock title %}
+
+
+{% block content %}
+    
+<div class="container">
+
+    <div class="jumbotron text-center">
+        <h2>Dual Enrollment Information</h2>
+        <h3>Updates are ordered by most recent</h3>
+    </div>
+
+
+    {% for dual_enrollment_update in dual_enrollment_updates %}
+        <div class="card">
+            <div class="card-header">{{ dual_enrollment_update.data_published|timezone:"America/New_York"  }}</div>
+            
+            <div class="card-body">
+                <h5 class="card-title">{{ dual_enrollment_update.title }}</h5>
+                <p class="card-text">{{ dual_enrollment_update.content|linebreaks }}</p>
+                
+                {% if dual_enrollment_update.external_url %}
+                    <p>Link: <a href="{{ dual_enrollment_update.external_url }}">{{ dual_enrollment_update.external_url }}</a></p>
+                {% endif %}
+                
+                <img src="/media/{{ dual_enrollment_update.image }}" style="margin: auto; width: 50%;" alt="card image">
+            </div>
+            <div class="card-footer">By: {{ dual_enrollment_update.counselor_name }}</div>
+        </div>
+        <br>
+    {% endfor %}
+
+</div>
+
+
+        
+{% endblock content %}
+    

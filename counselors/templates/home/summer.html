@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load tz %}
+
+{% block title %}
+    <title>Summer and Virtual School</title>
+{% endblock title %}
+
+
+{% block content %}
+    
+<div class="container">
+
+    <div class="jumbotron text-center">
+        <h2>Summer and Virtual School Information</h2>
+        <h3>Updates are ordered by most recent</h3>
+    </div>
+
+
+    {% for summer_update in summer_updates %}
+        <div class="card">
+            <div class="card-header">{{ summer_update.data_published|timezone:"America/New_York"  }}</div>
+            
+            <div class="card-body">
+                <h5 class="card-title">{{ summer_update.title }}</h5>
+                <p class="card-text">{{ summer_update.content|linebreaks }}</p>
+                
+                {% if summer_update.external_url %}
+                    <p>Link: <a href="{{ summer_update.external_url }}">{{ summer_update.external_url }}</a></p>
+                {% endif %}
+                
+                <img src="/media/{{ summer_update.image }}" style="margin: auto; width: 50%;" alt="card image">
+            </div>
+            <div class="card-footer">By: {{ summer_update.counselor_name}}</div>
+        </div>
+        <br>
+    {% endfor %}
+
+</div>
+
+
+        
+{% endblock content %}
+    

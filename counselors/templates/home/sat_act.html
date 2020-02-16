@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load tz %}
+
+{% block title %}
+    <title>SAT/ACT & Test Prep Opportunities</title>
+{% endblock title %}
+
+
+{% block content %}
+    
+<div class="container">
+
+    <div class="jumbotron text-center">
+        <h2>SAT/ACT & Test Prep Opportunities Information</h2>
+        <h3>Updates are ordered by most recent</h3>
+    </div>
+
+
+    {% for sat_act_update in sat_act_updates %}
+        <div class="card">
+            <div class="card-header">{{ sat_act_update.data_published|timezone:"America/New_York"  }}</div>
+            
+            <div class="card-body">
+                <h5 class="card-title">{{ sat_act_update.title }}</h5>
+                <p class="card-text">{{ sat_act_update.content|linebreaks }}</p>
+                
+                {% if sat_act_update.external_url %}
+                    <p>Link: <a href="{{ sat_act_update.external_url }}">{{ sat_act_update.external_url }}</a></p>
+                {% endif %}
+                
+                <img src="/media/{{ sat_act_update.image }}" style="margin: auto; width: 50%;" alt="card image">
+            </div>
+            <div class="card-footer">By: {{ sat_act_update.counselor_name}}</div>
+        </div>
+        <br>
+    {% endfor %}
+
+</div>
+
+
+        
+{% endblock content %}
+    

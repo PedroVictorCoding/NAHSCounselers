@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load tz %}
+
+{% block title %}
+    <title>Nineth Graders</title>
+{% endblock title %}
+
+
+{% block content %}
+    
+<div class="container">
+
+    <div class="jumbotron text-center">
+        <h2>Nineth Graders Information</h2>
+        <h3>Updates are ordered by most recent</h3>
+    </div>
+
+
+    {% for nineth_graders_update in nineth_graders_updates %}
+        <div class="card">
+            <div class="card-header">{{ nineth_graders_update.data_published|timezone:"America/New_York"  }}</div>
+            
+            <div class="card-body">
+                <h5 class="card-title">{{ nineth_graders_update.title }}</h5>
+                <p class="card-text">{{ nineth_graders_update.content|linebreaks }}</p>
+                
+                {% if nineth_graders_update.external_url %}
+                    <p>Link: <a href="{{ nineth_graders_update.external_url }}">{{ nineth_graders_update.external_url }}</a></p>
+                {% endif %}
+                
+                <img src="/media/{{ nineth_graders_update.image }}" style="margin: auto; width: 50%;" alt="card image">
+            </div>
+            <div class="card-footer">By: {{ nineth_graders_update.counselor_name}}</div>
+        </div>
+        <br>
+    {% endfor %}
+
+</div>
+
+
+        
+{% endblock content %}
+    

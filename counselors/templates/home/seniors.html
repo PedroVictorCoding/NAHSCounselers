@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load tz %}
+
+{% block title %}
+    <title>Seniors</title>
+{% endblock title %}
+
+
+{% block content %}
+    
+<div class="container">
+
+    <div class="jumbotron text-center">
+        <h2>Senior Information</h2>
+        <h3>Updates are ordered by most recent</h3>
+    </div>
+
+
+    {% for seniors_update in seniors_updates %}
+        <div class="card">
+            <div class="card-header">{{ seniors_update.data_published|timezone:"America/New_York"  }}</div>
+            
+            <div class="card-body">
+                <h5 class="card-title">{{ seniors_update.title }}</h5>
+                <p class="card-text">{{ seniors_update.content|linebreaks }}</p>
+                
+                {% if seniors_update.external_url %}
+                    <p>Link: <a href="{{ seniors_update.external_url }}">{{ seniors_update.external_url }}</a></p>
+                {% endif %}
+                
+                <img src="/media/{{ seniors_update.image }}" style="margin: auto; width: 50%;" alt="card image">
+            </div>
+            <div class="card-footer">By: {{ seniors_update.counselor_name}}</div>
+        </div>
+        <br>
+    {% endfor %}
+
+</div>
+
+
+        
+{% endblock content %}
+    

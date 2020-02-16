@@ -14,7 +14,7 @@ class Updates(models.Model):
     page_to_display     = models.CharField(max_length=50, choices=PAGE_TO_DISPLAY)
     title               = models.CharField(max_length=100)
     content             = models.TextField(max_length=5000)
-    image               = models.ImageField()
+    image               = models.ImageField(blank=True)
     external_url        = models.CharField(max_length=100, blank=True)
     counselor_name      = models.CharField(max_length=50)
     data_published   = models.DateTimeField(auto_now=True)

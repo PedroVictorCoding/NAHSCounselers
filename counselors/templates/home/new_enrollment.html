@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load tz %}
+
+{% block title %}
+    <title>New Enrollment</title>
+{% endblock title %}
+
+
+{% block content %}
+    
+<div class="container">
+
+    <div class="jumbotron text-center">
+        <h2>New Enrollment Information</h2>
+        <h3>Updates are ordered by most recent</h3>
+    </div>
+
+
+    {% for new_enrollment_update in new_enrollment_updates %}
+        <div class="card">
+            <div class="card-header">{{ new_enrollment_update.data_published|timezone:"America/New_York"  }}</div>
+            
+            <div class="card-body">
+                <h5 class="card-title">{{ new_enrollment_update.title }}</h5>
+                <p class="card-text">{{ new_enrollment_update.content|linebreaks }}</p>
+                
+                {% if new_enrollment_update.external_url %}
+                    <p>Link: <a href="{{ new_enrollment_update.external_url }}">{{ new_enrollment_update.external_url }}</a></p>
+                {% endif %}
+                
+                <img src="/media/{{ new_enrollment_update.image }}" style="margin: auto; width: 50%;" alt="card image">
+            </div>
+            <div class="card-footer">By: {{ new_enrollment_update.counselor_name}}</div>
+        </div>
+        <br>
+    {% endfor %}
+
+</div>
+
+
+        
+{% endblock content %}
+    

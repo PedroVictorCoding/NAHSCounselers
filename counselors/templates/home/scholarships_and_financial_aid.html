@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load tz %}
+
+{% block title %}
+    <title>Scholarship and Financial Aid</title>
+{% endblock title %}
+
+
+{% block content %}
+    
+<div class="container">
+
+    <div class="jumbotron text-center">
+        <h2>Scholarship and Financial Aid Information</h2>
+        <h3>Updates are ordered by most recent</h3>
+    </div>
+
+
+    {% for scholarships_update in scholarships_updates %}
+        <div class="card">
+            <div class="card-header">{{ scholarships_update.data_published|timezone:"America/New_York"  }}</div>
+            
+            <div class="card-body">
+                <h5 class="card-title">{{ scholarships_update.title }}</h5>
+                <p class="card-text">{{ scholarships_update.content|linebreaks }}</p>
+                
+                {% if scholarships_update.external_url %}
+                    <p>Link: <a href="{{ scholarships_update.external_url }}">{{ scholarships_update.external_url }}</a></p>
+                {% endif %}
+                
+                <img src="/media/{{ scholarships_update.image }}" style="margin: auto; width: 50%;" alt="card image">
+            </div>
+            <div class="card-footer">By: {{ scholarships_update.counselor_name}}</div>
+        </div>
+        <br>
+    {% endfor %}
+
+</div>
+
+
+        
+{% endblock content %}
+    
